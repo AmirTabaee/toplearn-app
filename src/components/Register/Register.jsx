@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Register = () => {
+    const [fullname, setFullname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        const user = {
+            fullname,
+            email,
+            password
+        }
+        console.log(user);
+
+    }
+
     return (
         <main class="client-page">
             <div class="container-content">
@@ -9,7 +25,7 @@ const Register = () => {
                 </header>
 
                 <div class="form-layer">
-                    <form action="" method="">
+                    <form onSubmit={handleSubmit} action="" method="">
                         <div class="input-group">
                             <span class="input-group-addon" id="username">
                                 <i class="zmdi zmdi-account"></i>
@@ -19,6 +35,8 @@ const Register = () => {
                                 class="form-control"
                                 placeholder="نام و نام خانوادگی"
                                 aria-describedby="username"
+                                value={fullname}
+                                onChange={e => setFullname(e.target.value)}
                             />
                         </div>
 
@@ -31,6 +49,8 @@ const Register = () => {
                                 class="form-control"
                                 placeholder="ایمیل"
                                 aria-describedby="email-address"
+                                value={email}
+                                onChange={e => {setEmail(e.target.value)}}
                             />
                         </div>
 
@@ -39,10 +59,12 @@ const Register = () => {
                                 <i class="zmdi zmdi-lock"></i>
                             </span>
                             <input
-                                type="text"
+                                type="password"
                                 class="form-control"
                                 placeholder="رمز عبور "
                                 aria-describedby="password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
                             />
                         </div>
 
