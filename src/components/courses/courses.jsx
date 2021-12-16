@@ -1,20 +1,27 @@
 import React from "react";
+import { withRouter, NavLink } from "react-router-dom";
 
 const Courses = () => {
     return (
         <section className="terms-items">
             <header>
                 <h2> آخرین دوره های تاپ لرن </h2>
-                <a href=""> مشاهده همه دوره ها </a>
+                <NavLink to="/archive" activeStyle={{ color: "lime" }}>
+                    {" "}
+                    مشاهده همه دوره ها{" "}
+                </NavLink>
             </header>
             <div className="row">
                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
                     <article>
-                        <a href="" className="img-layer">
+                        <NavLink to="/singleCourse" className="img-layer">
                             <img src="images/pic/1.jpg" />
-                        </a>
+                        </NavLink>
                         <h2>
-                            <a href=""> آموزش متریال دیاین در زامارین </a>
+                            <NavLink to="/singleCourse">
+                                {" "}
+                                آموزش متریال دیاین در زامارین{" "}
+                            </NavLink>
                         </h2>
                         <span> رایگان </span>
                         <i>1:52:32</i>
@@ -23,11 +30,14 @@ const Courses = () => {
 
                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
                     <article>
-                        <a href="" className="img-layer">
+                        <NavLink to="/singleCourse" className="img-layer">
                             <img src="images/pic/2.jpg" />
-                        </a>
+                        </NavLink>
                         <h2>
-                            <a href=""> آموزش متریال دیاین در زامارین </a>
+                            <NavLink to="/singleCourse">
+                                {" "}
+                                آموزش متریال دیاین در زامارین{" "}
+                            </NavLink>
                         </h2>
                         <span> رایگان </span>
                         <i>1:52:32</i>
@@ -36,24 +46,30 @@ const Courses = () => {
 
                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
                     <article>
-                        <a href="" className="img-layer">
+                        <NavLink to="/singleCourse" className="img-layer">
                             <img src="images/pic/3.jpg" />
-                        </a>
+                        </NavLink>
                         <h2>
-                            <a href=""> آموزش متریال دیاین در زامارین </a>
+                            <NavLink to="/singleCourse">
+                                {" "}
+                                آموزش متریال دیاین در زامارین{" "}
+                            </NavLink>
                         </h2>
-                        <span> 150.000 تومان </span>
+                        <span> رایگان </span>
                         <i>1:52:32</i>
                     </article>
                 </div>
 
                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
                     <article>
-                        <a href="" className="img-layer">
+                        <NavLink to="/singleCourse" className="img-layer">
                             <img src="images/pic/4.jpg" />
-                        </a>
+                        </NavLink>
                         <h2>
-                            <a href=""> آموزش متریال دیاین در زامارین </a>
+                            <NavLink to="/singleCourse">
+                                {" "}
+                                آموزش متریال دیاین در زامارین{" "}
+                            </NavLink>
                         </h2>
                         <span> رایگان </span>
                         <i>1:52:32</i>
@@ -62,24 +78,14 @@ const Courses = () => {
 
                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
                     <article>
-                        <a href="" className="img-layer">
+                        <NavLink to="/singleCourse" className="img-layer">
                             <img src="images/pic/5.jpg" />
-                        </a>
+                        </NavLink>
                         <h2>
-                            <a href=""> آموزش متریال دیاین در زامارین </a>
-                        </h2>
-                        <span> 15.000 تومان </span>
-                        <i>1:52:32</i>
-                    </article>
-                </div>
-
-                <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                        <a href="" className="img-layer">
-                            <img src="images/pic/6.jpg" />
-                        </a>
-                        <h2>
-                            <a href=""> آموزش متریال دیاین در زامارین </a>
+                            <NavLink to="/singleCourse">
+                                {" "}
+                                آموزش متریال دیاین در زامارین{" "}
+                            </NavLink>
                         </h2>
                         <span> رایگان </span>
                         <i>1:52:32</i>
@@ -88,26 +94,48 @@ const Courses = () => {
 
                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
                     <article>
-                        <a href="" className="img-layer">
-                            <img src="images/pic/7.jpg" />
-                        </a>
+                        <NavLink to="/singleCourse" className="img-layer">
+                            <img src="images/pic/6.jpg" />
+                        </NavLink>
                         <h2>
-                            <a href=""> آموزش متریال دیاین در زامارین </a>
+                            <NavLink to="/singleCourse">
+                                {" "}
+                                آموزش متریال دیاین در زامارین{" "}
+                            </NavLink>
                         </h2>
-                        <span> 20.000 تومان </span>
+                        <span> رایگان </span>
                         <i>1:52:32</i>
                     </article>
                 </div>
 
                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
                     <article>
-                        <a href="" className="img-layer">
-                            <img src="images/pic/8.jpg" />
-                        </a>
+                        <NavLink to="/singleCourse" className="img-layer">
+                            <img src="images/pic/7.jpg" />
+                        </NavLink>
                         <h2>
-                            <a href=""> آموزش متریال دیاین در زامارین </a>
+                            <NavLink to="/singleCourse">
+                                {" "}
+                                آموزش متریال دیاین در زامارین{" "}
+                            </NavLink>
                         </h2>
-                        <span> 75.000 تومان </span>
+                        <span> رایگان </span>
+                        <i>1:52:32</i>
+                    </article>
+                </div>
+
+                <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col">
+                    <article>
+                        <NavLink to="/singleCourse" className="img-layer">
+                            <img src="images/pic/8.jpg" />
+                        </NavLink>
+                        <h2>
+                            <NavLink to="/singleCourse">
+                                {" "}
+                                آموزش متریال دیاین در زامارین{" "}
+                            </NavLink>
+                        </h2>
+                        <span> رایگان </span>
                         <i>1:52:32</i>
                     </article>
                 </div>
@@ -116,4 +144,4 @@ const Courses = () => {
     );
 };
 
-export default Courses;
+export default withRouter(Courses);

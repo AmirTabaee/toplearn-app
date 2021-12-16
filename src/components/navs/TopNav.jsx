@@ -8,7 +8,7 @@ const TopNav = () => {
                 <div className="col-sm-6 col-xs-12">
                     <ul>
                         <li>
-                            <NavLink to="/"> صفحه اصلی </NavLink>
+                            <NavLink exact to="/" activeStyle={{color:"lime"}}> صفحه اصلی </NavLink>
                             <a href=""> درباره ما </a>
                             <a href=""> تماس با ما </a>
                         </li>
@@ -22,8 +22,8 @@ const TopNav = () => {
                         </div> */}
                         <div className="signin ">
                             <i className="zmdi zmdi-account"></i>
-                            <NavLink to="/login"> ورود </NavLink>  / 
-                            <NavLink to="/register"> عضویت </NavLink>
+                            <NavLink to="/login" activeStyle={{color:"lime"}}> ورود </NavLink>  / 
+                            <NavLink to="/register" activeStyle={{color:"lime"}}> عضویت </NavLink>
                         </div>
                     </div>
                 </div>
