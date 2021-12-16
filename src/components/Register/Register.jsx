@@ -1,49 +1,45 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import { registerUser } from "./../../services/userService";
 
 const Register = () => {
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = event => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const user = {
             fullname,
             email,
-            password
-        }
+            password,
+        };
         console.log(user);
 
-        const reset= () => {
+        const reset = () => {
             setFullname("");
             setEmail("");
             setPassword("");
+        };
+
+        try {
+            const { status } = await registerUser(user);
+
+            if (status === 201) {
+                toast.success("شخص با موفقیت اضافه شد", {
+                    position: "top-right",
+                    closeOnClick: true,
+                });
+                reset();
+            }
+        } catch (ex) {
+            toast.error("مشکلی پیش امده", {
+                position: "bottom-right",
+                closeOnClick: true,
+            });
         }
-
-        axios.post("https://toplearnapi.ghorbany.dev/api/register" , JSON.stringify(user) , {
-            headers:{
-                "Content-Type" : "application/json"
-            }
-        }).then(({data , status}) => {
-            console.log(data);
-            if(status === 201){
-                toast.success("شخص با موفقیت اضافه شد" , {
-                    position:"top-right",
-                    closeOnClick:true
-                })
-            }
-        }).catch(ex => {
-           toast.error("مشکلی پیش امده" , {
-               position:"bottom-right",
-               closeOnClick:true
-           })
-        }) 
-
-
-    }
+    };
 
     return (
         <main class="client-page">
@@ -64,7 +60,7 @@ const Register = () => {
                                 placeholder="نام و نام خانوادگی"
                                 aria-describedby="username"
                                 value={fullname}
-                                onChange={e => setFullname(e.target.value)}
+                                onChange={(e) => setFullname(e.target.value)}
                             />
                         </div>
 
@@ -78,7 +74,9 @@ const Register = () => {
                                 placeholder="ایمیل"
                                 aria-describedby="email-address"
                                 value={email}
-                                onChange={e => {setEmail(e.target.value)}}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                }}
                             />
                         </div>
 
@@ -92,7 +90,7 @@ const Register = () => {
                                 placeholder="رمز عبور "
                                 aria-describedby="password"
                                 value={password}
-                                onChange={e => setPassword(e.target.value)}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
@@ -119,7 +117,6 @@ const Register = () => {
                     </form>
                 </div>
             </div>
-            <ToastContainer/>
         </main>
     );
 };
