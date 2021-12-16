@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
     const [fullname, setFullname] = useState("");
@@ -14,6 +16,32 @@ const Register = () => {
             password
         }
         console.log(user);
+
+        const reset= () => {
+            setFullname("");
+            setEmail("");
+            setPassword("");
+        }
+
+        axios.post("https://toplearnapi.ghorbany.dev/api/register" , JSON.stringify(user) , {
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        }).then(({data , status}) => {
+            console.log(data);
+            if(status === 201){
+                toast.success("شخص با موفقیت اضافه شد" , {
+                    position:"top-right",
+                    closeOnClick:true
+                })
+            }
+        }).catch(ex => {
+           toast.error("مشکلی پیش امده" , {
+               position:"bottom-right",
+               closeOnClick:true
+           })
+        }) 
+
 
     }
 
@@ -91,6 +119,7 @@ const Register = () => {
                     </form>
                 </div>
             </div>
+            <ToastContainer/>
         </main>
     );
 };
