@@ -1,54 +1,41 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { registerUser } from "../../services/userService";
 
 const Register = () => {
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = async (event) => {
+    const reset = () => {
+        setFullname("");
+        setEmail("");
+        setPassword("");
+    };
+    const handleSubmit = async event => {
         event.preventDefault();
-
         const user = {
             fullname,
             email,
             password,
         };
         console.log(user);
-
-        const reset = () => {
-            setFullname("");
-            setEmail("");
-            setPassword("");
-        };
-
-        axios
-            .post(
-                "https://toplearnapi.ghorbany.dev/api/register",
-                JSON.stringify(user),
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                }
-            )
-            .then(({ data, status }) => {
-                console.log(data);
-                if (status === 201) {
-                    reset();
-                    toast.success("کاربر با موفقیت ثبت گردید", {
-                        position: "top-right",
-                        closeOnClick: true,
-                    });
-                } else {
-                    toast.error("مشکلی پیش امده", {
-                        position: "bottom-right",
-                        closeOnClick: true,
-                    });
-                }
-            })
-            .catch((er) => console.log(er));
+        try {
+            const { status } = await registerUser(user);
+            if (status === 201) {
+                toast.success("کاربر با موفقیت ثبت گردید", {
+                    position: "top-right",
+                    closeOnClick: true,
+                });
+                reset();
+            }
+        } catch (ex) {
+            toast.error("مشکلی پیش امده", {
+                position: "bottom-right",
+                closeOnClick: true,
+            });
+            console.log(ex);
+        }
     };
 
     return (
@@ -75,7 +62,10 @@ const Register = () => {
                         </div>
 
                         <div className="input-group">
-                            <span className="input-group-addon" id="email-address">
+                            <span
+                                className="input-group-addon"
+                                id="email-address"
+                            >
                                 <i className="zmdi zmdi-email"></i>
                             </span>
                             <input
@@ -114,16 +104,20 @@ const Register = () => {
                         <div className="link">
                             <a href="">
                                 {" "}
-                                <i className="zmdi zmdi-assignment"></i> قوانین و
-                                مقررات سایت !
+                                <i className="zmdi zmdi-assignment"></i> قوانین
+                                و مقررات سایت !
                             </a>
                             <a href="">
                                 {" "}
-                                <i className="zmdi zmdi-account"></i> ورود به سایت{" "}
+                                <i className="zmdi zmdi-account"></i> ورود به
+                                سایت{" "}
                             </a>
                         </div>
 
-                        <button className="btn btn-success"> عضویت در سایت </button>
+                        <button className="btn btn-success">
+                            {" "}
+                            عضویت در سایت{" "}
+                        </button>
                     </form>
                 </div>
             </div>
