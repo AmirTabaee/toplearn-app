@@ -1,59 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { loginUser } from "../../services/userService";
+import { withRouter } from "react-router-dom";
 
-const Login = () => {
+const Login = ({history}) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        const user = {
+            email,
+            password,
+        };
+        try {
+            const { status , data } = await loginUser(user);
+            if (status === 200) {
+                console.log(data);
+                toast.success("کاربر با موفقیت وارد شد", {
+                    position: "top-right",
+                    closeOnClick: true,
+                });
+                localStorage.setItem("token" , data.token);
+                history.replace("/");
+
+            }
+        } catch (er) {
+            toast.error("مشکلی پیش امده", {
+                position: "bottom-right",
+                closeOnClick: true,
+            });
+            console.log(er);
+        }
+    };
+
     return (
-        <main class="client-page">
-            <div class="container-content">
+        <main className="client-page">
+            <div className="container-content">
                 <header>
                     <h2> ورود به سایت </h2>
                 </header>
 
-                <div class="form-layer">
-                    <form action="" method="">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="email-address">
-                                <i class="zmdi zmdi-email"></i>
+                <div className="form-layer">
+                    <form onSubmit={handleLogin}>
+                        <div className="input-group">
+                            <span className="input-group-addon" id="email-address">
+                                <i className="zmdi zmdi-email"></i>
                             </span>
                             <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 placeholder="ایمیل"
                                 aria-describedby="email-address"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
-                        <div class="input-group">
-                            <span class="input-group-addon" id="password">
-                                <i class="zmdi zmdi-lock"></i>
+                        <div className="input-group">
+                            <span className="input-group-addon" id="password">
+                                <i className="zmdi zmdi-lock"></i>
                             </span>
                             <input
-                                type="text"
-                                class="form-control"
+                                type="password"
+                                className="form-control"
                                 placeholder="رمز عبور "
                                 aria-describedby="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
-                        <div class="remember-me">
+                        <div className="remember-me">
                             <label>
                                 <input type="checkbox" name="" /> مرا بخاطر
                                 بسپار{" "}
                             </label>
                         </div>
 
-                        <div class="link">
+                        <div className="link">
                             <a href="">
                                 {" "}
-                                <i class="zmdi zmdi-lock"></i> رمز عبور خود را
+                                <i className="zmdi zmdi-lock"></i> رمز عبور خود را
                                 فراموش کرده ام !
                             </a>
                             <a href="">
                                 {" "}
-                                <i class="zmdi zmdi-account"></i> عضویت در سایت{" "}
+                                <i className="zmdi zmdi-account"></i> عضویت در سایت{" "}
                             </a>
                         </div>
 
-                        <button class="btn btn-success"> ورود به سایت </button>
+                        <button className="btn btn-success"> ورود به سایت </button>
                     </form>
                 </div>
             </div>
@@ -61,4 +98,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default withRouter(Login);
